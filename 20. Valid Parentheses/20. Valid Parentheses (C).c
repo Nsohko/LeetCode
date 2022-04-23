@@ -9,16 +9,16 @@ bool isValidparenthesis(char * s)
     char stack[leng + 1];
     stack[0] = '\0';
     int top = 0;
-    empty = true; 
+    bool Empty = true; 
     for (int i = 0; i < leng; i++)
     {
         char curval = s[i];
         char topstack = stack[top];
-        if (curval ==' (' || curval == '[' || curval == '{')
+        if (curval == '(' || curval == '[' || curval == '{')
         {
             top++;
             stack[top] = curval;
-            empty = false;
+            Empty = false;
         }
         else
         {
@@ -51,7 +51,7 @@ bool isValidparenthesis(char * s)
 	    }
         }
     }
-    if (top == 0 && !empty)
+    if (top == 0 && !Empty)
     {
         return true;
     }
