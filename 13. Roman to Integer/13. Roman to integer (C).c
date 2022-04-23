@@ -38,7 +38,7 @@ int returndecimal(char rom)
     return -1;
 }
 
-int romconverter(char inp[])
+int romantointeger(char inp[])
 {
     int leng = strlen(inp);
     int i = 0;
