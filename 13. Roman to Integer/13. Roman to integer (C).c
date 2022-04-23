@@ -45,10 +45,10 @@ int romconverter(char inp[])
     int out = 0;
     while (i < leng)
     {
-        int val1 = returndec(inp[i]);
+        int val1 = returndecimal(inp[i]);
 	if(i + 1 < leng)
         {
-	    int val2 = returndec(inp[i + 1]);
+	    int val2 = returndecimal(inp[i + 1]);
 	    if (val2 > val1)
 	    {
 	        out += (val2 - val1);
