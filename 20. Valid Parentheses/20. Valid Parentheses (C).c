@@ -22,38 +22,38 @@ bool isValidparenthesis(char * s)
         {
             switch(curval)
             {
-				case ')':
-				  if (topstack != '(')
-				  {
-					  return false;
-				  }
-				  top--;
-				  break;
-				case ']':
-				  if (topstack != '[')
-				  {
-					  return false;
-				  }
-				  top--;
-                  break;
-				case '}':
-				  if (topstack != '{')
-				  {
-					return false;
-				  }
-				  top--;
-				  break;
-				default:
-				  return false;
-				  break;
-			}
-		}
-	}
-	if (top == 0)
-	{
-	    return true;
-	}
-	return false;
+                case ')':
+	            if (topstack != '(')
+	            {
+		        return false;
+		    }
+		    top--;
+		    break;
+		case ']':
+		    if (topstack != '[')
+		    {
+		        return false;
+		    }
+		    top--;
+                    break;
+		case '}':
+		    if (topstack != '{')
+		    {
+		        return false;
+		    }
+		    top--;
+		    break;
+		default:
+		    return false;
+		    break;
+	    }
+        }
+    }
+    if (top == 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 int main(void)
