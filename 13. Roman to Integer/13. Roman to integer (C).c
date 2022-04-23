@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 
 struct key
 {
 char roman;
 int dec;
-}keys[7]={
+}keys[7] = {
 	{'I', 1},
 	{'V', 5},
 	{'X', 10},
@@ -28,9 +28,9 @@ int main()
 
 int returndecimal(char rom)
 {
-    for (int i = 0; i<7;i++)
+    for (int i = 0; i < 7; i++)
     {
-        if (keys[i].roman==rom)
+        if (keys[i].roman == rom)
 	{
 	    return keys[i].dec;
 	}
@@ -40,29 +40,29 @@ int returndecimal(char rom)
 
 int romconverter(char inp[])
 {
-    int leng=strlen(inp);
-    int i=0;
-    int out=0;
-    while (i<leng)
+    int leng = strlen(inp);
+    int i = 0;
+    int out = 0;
+    while (i < leng)
     {
-        int val1=returndec(inp[i]);
-	if(i+1<leng)
+        int val1 = returndec(inp[i]);
+	if(i + 1 < leng)
         {
-	    int val2=returndec(inp[i+1]);
-	    if (val2>val1)
+	    int val2 = returndec(inp[i + 1]);
+	    if (val2 > val1)
 	    {
-	        out+=(val2-val1);
-		i+=2;
+	        out += (val2 - val1);
+		i += 2;
 	    }
 	    else
 	    {
-	        out+=val1;
+	        out += val1;
 		i++;
 	    }
         }
 	else
 	{
-	    out+=val1;
+	    out += val1;
 	    i++;
 	}
     }
