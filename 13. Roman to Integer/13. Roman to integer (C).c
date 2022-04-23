@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-struct key
-{
+struct key {
 char roman;
 int dec;
 }keys[7] = {
