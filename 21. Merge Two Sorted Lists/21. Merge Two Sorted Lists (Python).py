@@ -102,16 +102,16 @@ def linkedlistmerger2(head1, head2): #an alternative solution, but I think this 
 #If you don't understand my explanation, it's fine, the code is self explanatory.
 
 def linkedlistmergerrecursive(head1, head2):
-  if head1 ==cNone:
+  if head1 == None:
     return head2
   elif head2 == None:
     return head1
   else:
     if head1.val >= head2.val:
-      head2.next = recurslinkedlistmerge(head1,head2.next)
+      head2.next = linkedlistmergerrecursive(head1,head2.next)
       return head2
     elif head2.val > head1.val:
-      head1.next = recurslinkedlistmerge(head1.next,head2)
+      head1.next = linkedlistmergerrecursive(head1.next,head2)
       return head1
 
 def linkedlistnodeprinter(node): #just a simple function to print a linked list that originates from a particular node. Not part of solution
@@ -131,9 +131,9 @@ ll2 = linkedlist()
 ll2.initialise(lt2) #initiliases a linked list called ll1 with the values in lt1
 head2 = ll2.head
 
-solnhead = linkedlistmergerrecursive(ll1,ll2)
-#solnhead = linkedlistmerger1(ll1,ll2)
-#solnhead = linkedlistmergerrecursive(ll1,ll2)
+solnhead = linkedlistmergerrecursive(head1, head2)
+#solnhead = linkedlistmerger1(head1, head2)
+#solnhead = linkedlistmergerrecursive(head1, head2)
 
 linkedlistnodeprinter(solnhead)
 
