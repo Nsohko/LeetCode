@@ -6,7 +6,8 @@ class node: #this is a single node object in a linked list
 class linkedlist:
   def __init__(self, head = None):
     self.head = head #head is the head node object of the linked list
-  def endinsert(self, val): #this function simply appends a new nodeto the end of the linked list
+
+  def endinsert(self, val): #this function simply appends a new node to the end of the linked list
     newnode = node(val)
     if self.head == None: 
        self.head = newnode
