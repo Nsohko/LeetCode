@@ -28,7 +28,7 @@ class linkedlist:
       self.endinsert(i)
       
   def insert(self, pos, val): #inserts a new node with value of val at a position of pos in the linked list
-     newnode=node(val)
+     newnode = node(val)
      if pos < 0:
        print("Pos must be more than 0!")
        return
@@ -38,7 +38,7 @@ class linkedlist:
      else:
        i = 0
        currnode = self.head
-       while i < pos-1 and curnode.next!=None:
+       while i < pos - 1 and curnode.next != None:
          currnode = currnode.next
          i += 1
        newnode.next = currnode.next
