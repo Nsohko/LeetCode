@@ -70,6 +70,32 @@ class linkedlist:
       next = next.next
     prev.next = None
 
+  def posdelete(self, pos): #this function deletes the node in a linked list at an index of pos
+    if pos < 0: #some error management 
+      print("Pos must be more than 0!")
+      return
+    if self.head == None: #some more error management
+      print("This list is clear already")
+      return
+    if self.head.next == None: #just a special case to consider
+      self.head = None
+      return
+    if pos == 0: #another special case
+      self.head = self.head.next
+      return
+    prev = self.head
+    cur = prev.next
+    next = cur.next
+    i = 0
+    while i < pos - 1 and next != None: #the check that next != None allows the function to gracefully exit if the value of pos exceeds max index of the linked list. In such a case, the function will default to deleting last node
+      prev = prev.next
+      cur = cur.next
+      next = next.next
+      i += 1
+    prev.next = next
+
+''' START OF SOLUTIONS'''
+
 def linkedlistmerger1(head1, head2):
   dummy = node()
   curout = dummy
