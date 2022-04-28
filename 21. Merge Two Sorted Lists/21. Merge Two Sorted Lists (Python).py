@@ -23,7 +23,7 @@ class linkedlist:
 # This is because saying currnode=newnode simply reassigns currnode, rather thsn changing tge val of the obj initially pointed to by currnode. ie if currnodr=vurrnode.next then now currnode and currnode.next point to the same ibject. howevee, if i then write currnode=neenode, it just reassigns currnode to neenode rather than changing what currnode was initially assigned to. eg a=5, b=a, b=10. this code will not change the balue of a to 10. this is called pass bt object reference. basically when equating teo variables, python just copies the reference of the right side var ti the left side. for mutable obj, you can modify one variable (eg appending a list)and it will modify both but reassigning one variable will not affect tge other. for immutable obj, neitger modify nor reassignment will affect tge other. 
                    
     
-  def initialise(self, vals): #initialises a linked list which contains the values in vals, where vals is a list
+  def initialise(self, vals): #initialises a linked list which contains the values in vals, where vals is a list. Note that this function is quite slow. For a better algorithm with better time complexity, look at the unit lakes function in the C solution for this same problem.
     for i in vals:
       self.endinsert(i)
       
@@ -53,6 +53,19 @@ class linkedlist:
   
   def clear(self): #this function just clears all values in a linked list
     self.head = None
+
+  def enddelete(self): #this function deletes the last node from a linked list
+    if self.head == None:
+      print("Linked list is already empty")
+      return
+    prev = self.head
+    cur = self.head.next
+    next = self.head.next.next
+    while next != None:
+      prev = prev.next
+      cur = cur.next
+      next = next.next
+    prev.next = None
 
 def linkedlistmerger1(head1, head2):
   dummy = node()
