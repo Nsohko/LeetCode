@@ -38,7 +38,7 @@ class linkedlist:
      else:
        i = 0
        currnode = self.head
-       while i < pos - 1 and curnode.next != None:
+       while i < pos - 1 and curnode.next != None:  #the check that curnode.next != None helps gracefully handle cases where the position exceeds the max index of the linked list by just appending the new node to the last index. Thus, if I give a value to position that is too large, the code gracefully handles it by just appending it to the end of the list (since it will break out of the while loop the moment curnode.next == None, as that indicates the end of the linked list
          currnode = currnode.next
          i += 1
        newnode.next = currnode.next
