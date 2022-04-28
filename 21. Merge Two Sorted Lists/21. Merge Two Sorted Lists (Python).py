@@ -62,8 +62,8 @@ class linkedlist:
       self.head = None
       return
     prev = self.head
-    cur = self.head.next
-    next = self.head.next.next
+    cur = prev.next
+    next = cur.next
     while next != None:
       prev = prev.next
       cur = cur.next
