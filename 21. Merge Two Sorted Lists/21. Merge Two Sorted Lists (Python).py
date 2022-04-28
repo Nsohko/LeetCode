@@ -94,6 +94,30 @@ class linkedlist:
       i += 1
     prev.next = next
 
+  def valdelete(self, val): #this function deletes the first node with a value of Val in the linked list
+    if self.head == None: #Some error handling
+       print("This list is clear already")
+       return
+    if self.head.val == val: #a special case
+      self.head = self.head.next
+      print("Index of value was 0")
+      return
+    prev = self.head
+    cur = prev.next
+    i = 1
+    while cur != None:
+      if cur.val == val:
+        prev.next = cur.next
+        print("Index of value was " + str(i))
+        break
+      else:
+        prev = prev.next
+        cur = cur.next
+        i += 1
+        continue
+    else:
+      print("Value is not in linked list")
+
 ''' START OF SOLUTIONS'''
 
 def linkedlistmerger1(head1, head2):
