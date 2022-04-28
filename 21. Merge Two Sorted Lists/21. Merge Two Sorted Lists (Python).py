@@ -50,6 +50,9 @@ class linkedlist:
        print(curnode.val, end=' ')
        curnode = curnode.next
      print('')
+  
+  def clear(self): #this function just clears all values in a linked list
+    self.head = None
 
 def linkedlistmerger1(head1, head2):
   dummy = node()
