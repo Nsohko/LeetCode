@@ -58,11 +58,11 @@ class linkedlist:
     if self.head == None:
       print("Linked list is already empty")
       return
-    cur = self.head.next
-    if cur == None:
+    if self.head == None:
       self.head = None
       return
     prev = self.head
+    cur = self.head.next
     next = self.head.next.next
     while next != None:
       prev = prev.next
