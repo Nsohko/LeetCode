@@ -13,7 +13,7 @@ struct node // A linked list node
 typedef struct node node;
 
 /* Note that in this programme's implementation of a linked list, I don't create a linked list object to contain and access the head node. Instead I declare and access the head node directly. 
-This has some advantages and disadvantages as seen below. For the alternative method of declaring another linked list object, see the python solution to this same problem *\
+This has some advantages and disadvantages as seen below. For the alternative method of declaring another linked list object, see the python solution to this same problem */
 
 // Function to initialise a linked list node
 node* nodecreator(int val) 
@@ -94,11 +94,14 @@ void insert(node **head_ref, int pos, int val)
 		return;
 	}
 	
-	int curindex = 1; //I already checked for the case where the position for newnode to be added is 0 using the previous if loop. from here, tge neenode will be inserted just after the curnode. Thus, the starting index for where i can insert the newnode is 1(just after *head_ref)
+        // I already checked for the case where the position for newnode to be added is 0 using the previous if statement. from here,the newnode will be inserted just after the curnode. Thus, the starting index for where i can insert the newnode is 1 (just after *head_ref)
+	int curindex = 1; 
 	
-	for(node* curnode = *head_ref; curnode != NULL; curnode = curnode -> next) //keeps iterating till curnode=NULL. if curnode==NULL, it means the loop has exceeded the linked list length, without curindex reaching pos. thus, pos was outside of max index. thus, for loop is exited and error code is printed
+        // keeps iterating till curnode=NULL. if curnode==NULL, it means the loop has exceeded the linked list length, without curindex reaching pos. thus, pos was outside of max index. thus, for loop is exited and error code is printed
+	for(node* curnode = *head_ref; curnode != NULL; curnode = curnode -> next) 
 	{
-		if(curindex == pos) //checks whether the list has recahed the correct index for newnode to be inserted. if so, newnode is inserted and the function returns
+                // checks whether the list has recahed the correct index for newnode to be inserted. if so, newnode is inserted and the function returns
+		if(curindex == pos) 
 		{
 			newnode -> next = curnode -> next;
 			curnode -> next = newnode;
