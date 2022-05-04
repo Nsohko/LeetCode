@@ -113,6 +113,7 @@ void insert(node **head_ref, int pos, int val)
 	printf("Linked list index out of bounds. Max index is %d\n", curindex-1);
 }
 	
+// Fully deletes a linked list and frees all memory allocated to it
 void fullclear(node **head_ref)
 {
    node* curnode =* head_ref;
@@ -125,6 +126,7 @@ void fullclear(node **head_ref)
    *head_ref = NULL;
 }
 
+// Deletes the last node in a linked list
 void enddelete(node **head_ref)
 {
 	if (*head_ref == NULL)
@@ -153,6 +155,7 @@ void enddelete(node **head_ref)
 	return;
 }
 
+// Deletes the node at a specific position (pos) in a linked list
 void posdelete(node** head_ref, int pos)
 {
 	if (pos < 0)
@@ -192,6 +195,7 @@ void posdelete(node** head_ref, int pos)
 	
 }
 
+// Deletes the node with the first occurrence of a specific value (val) in a linked list
 void valdelete(node **head_ref, int val)
 {
 	if (*head_ref == NULL)
@@ -228,10 +232,6 @@ void valdelete(node **head_ref, int val)
 node *linkedlistmerger1(node *head1, node *head2);
 
 node *recurslinkedlistmerger(node *head1, node *head2);
-	
-	
-
-
 
 int main() {
 	int lt1[]={1,5,8};
@@ -244,7 +244,8 @@ int main() {
 	return 0; 
 }
 
-node *linkedlistmerger1(node *head1, node *head2) //not that since i pass tge pointers as parameters, the catual values of head1 and head2 in the caller will be modified. thus, i cannot cl this function twice on the same two node pointers in tge same caller(see the python code fir a more detailed explanation). if i wanted to leave the linked lists associated with head1 and head2 unchanfed inbthe caller scope, i should only pass the nodes
+// note that since i pass the pointers as parameters, the actual values of head1 and head2 in the caller will be modified. Thus, i cannot call this function twice on the same two node pointers in the same caller (see the python code for a more detailed explanation). if i wanted to leave the linked lists associated with head1 and head2 unchanged in the caller scope, i should only pass the nodes as parameters 
+node *linkedlistmerger1(node *head1, node *head2) // An interative solution
 {
 	node* dummy = malloc(1 * sizeof(node));
 	node* curnode = dummy;
@@ -280,7 +281,7 @@ node *linkedlistmerger1(node *head1, node *head2) //not that since i pass tge po
 }
 
 
-node *recurslinkedlistmerger(node *head1, node *head2)
+node *recurslinkedlistmerger(node *head1, node *head2) // A recursive solution
 {
 	if (head1==NULL)
 	{
