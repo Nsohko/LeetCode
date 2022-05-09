@@ -4,7 +4,7 @@ class node: #this is a single node object in a linked list
     self.next = next #next is a node object that points to the next node
 
       
-def linkedlistcycle(head): # My first solution. This uses O(n) space since it makes a copy of the linked list
+def linkedlistcycle1(head): # My first solution. This uses O(n) space since it makes a copy of the linked list
   copy = set() #this is a python set, which acts as a hashtable for rapid constant time lookups
   curnode = head
   while curnode != None:
