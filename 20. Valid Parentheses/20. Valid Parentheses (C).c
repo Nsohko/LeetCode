@@ -3,7 +3,7 @@
 #include<string.h>
 
 
-bool isValidparenthesis(char * s)
+bool isValidparenthesis(char *s)
 {
     int leng = strlen(s);
     char stack[leng + 1];
