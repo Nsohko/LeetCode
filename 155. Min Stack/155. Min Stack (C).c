@@ -107,6 +107,5 @@ void minStackFree(MinStack* obj)
 		free(curnode);
 		curnode = temp;
 	}
-	
 	free(obj);
 }
