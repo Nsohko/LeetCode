@@ -2,9 +2,9 @@
 # note that I give a default value to seenvals as none, rather than an empty set. Instead, I initialise it as an empty set within the function 
 # this is because of the interesting way python handles default mutable arguments. The default argument mutable object is created in the def statement, and successive calls to the function using the default argument, will repeatedly call that same default argument object
 # for eg, consider the function 
-''' def test(testlist = []): 
-      testlist.append(5)
-      return testlist        '''
+# def test(testlist = []): 
+#     testlist.append(5)
+#     return testlist       
 # (calling the function once) test() -> returns testlist = [5]
 # (calling the function a second time) test() -> returns testlist = [5,5]
 # (calling the function third time) test() -> returns testlist = [5,5,5]
