@@ -38,12 +38,11 @@ def isHappy1(num, seenvals = None):
       return False
     # on the other hand, if sum == 1, it means num was indeed a happy number, based on the definition of happy number
     elif sum == 1:
-      print(seenvals)
       return True
     # else, we must continue recursively doing this process until we get a value of sum that is either in seenvals (if nums is not happy) or a value of sum that equals 1 (if nums is happy)
     else:
       seenvals.add(sum)
-      return isHappy(sum, seenvals)
+      return isHappy1(sum, seenvals)
       
 # this is an alternative iterative solution
 def isHappy2(num):
