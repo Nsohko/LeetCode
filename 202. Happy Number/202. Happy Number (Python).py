@@ -8,8 +8,7 @@
 # (calling the function once) test() -> returns testlist = [5]
 # (calling the function a second time) test() -> returns testlist = [5,5]
 # (calling the function third time) test() -> returns testlist = [5,5,5]
-# thus, as seen the default mutable 
- argument used in every function call is the exact same list, and it will be modified for all instances of the function. This is because the default parameter called always has the same addresses (due to pythons handling of mutable objects), causing the same list object to be called every time
+# thus, as seen, the default mutable argument used in every function call is the exact same list, and it will be modified for all instances of the function. This is because the default parameter called always has the same addresses (due to pythons handling of mutable objects), causing the same list object to be called every time
 # since lists, sets, etc are mutable, every time they are modified, there address remains the same, unlike for non mutable data, eg strings, integers, etc, which will create a new address to store the modified data. This, since a function in python will always retrieve its default parameter from a specific address that is initial used during function definition, for mutable arguments, as the functions are called, the specific mutable object at that exact address is directly modified, which will affect future calls of the function with the default argument
 # to avoid such issues, it is better to initialise mutable arguments inside the list
 def isHappy1(num, seenvals = None):
