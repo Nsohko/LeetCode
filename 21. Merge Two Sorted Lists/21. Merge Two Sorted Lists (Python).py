@@ -141,20 +141,10 @@ def linkedlistmerger1(head1, head2):
 #careful about this. Out was initialised as a dummy node. It has no value. The next node of the dummy node points to the true head node, with the actual value!
   
 def linkedlistmerger2(head1, head2): #an alternative solution, but I think this is worse than the first solution
-  if head1 == None:
-    return head2
-  elif head2 == None:
-    return head1
-  else:
-    if head1.val >= head2.val:
-      head2.next = recurslinkedlistmerge(head1,head2.next)
-      return head2
-    elif head2.val > head1.val:
-      head1.next = recurslinkedlistmerge(head1.next,head2)
-      return head1
-    return head2
   if head2 == None:
     return head1
+  if head1 == None:
+    return head2
   if head1.val >= head2.val:
     seek = head2
     target = head1
