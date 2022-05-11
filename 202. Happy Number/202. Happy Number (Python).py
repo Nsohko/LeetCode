@@ -66,3 +66,7 @@ def isHappy2(num):
       continue
   else:
      return False
+
+
+print(isHappy1(13))
+print(isHappy2(19))
