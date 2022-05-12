@@ -68,5 +68,27 @@ def isHappy2(num):
      return False
 
 
+def squaresum(num):
+  sum = 0
+  while num > 0:
+    curdigit = num % 10
+    sum += curdigit**2
+    num = num // 10
+  return sum
+    
+def isHappy3(num):
+  slow = fast = num
+  while fast != 1:
+    slow = squaresum(slow)
+    fast = squaresum(squaresum(fast))
+    
+    if slow == fast and fast != 1:
+      return False
+  else:
+     return True
+     
+
+
 print(isHappy1(13))
 print(isHappy2(19))
+print(isHappy(23))
