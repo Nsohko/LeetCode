@@ -70,7 +70,7 @@ int countPrimes2(int n)
     int count = 0;
 
     // Finally, we iterate through the entire list, and count the number of times we see a box marked as true. These boxes correspond to a prime number and hence the number of boxes that are True is equal to the number of prime numbers
-    // note theta although our algorithm above also determines whether n is prime or not, the leetcode question asks us for the count of primes STRICTLY less than n, this we ignore n.
+    // note that although our algorithm above also determines whether n is prime or not, the leetcode question asks us for the count of primes STRICTLY less than n, this we ignore n.
     for (int Prime = 2; Prime < n; Prime++)
     {
         if (PrimeList[Prime])
@@ -82,7 +82,7 @@ int countPrimes2(int n)
 }
 
 // for more information on the above algorithm see the leetcode hint section for this problem.
-
+// also a note on time complexity: a nested for loop will increase time complexity, but two spectate for loops will not. For eg, a for loop nested in a for loop will have a time complexity of O(n^2), but two separate for loops that run one after another will only have a time complexity of O(n), the same as a single for loop (though the two separate for loops will take longer than the single for loop)
 int main() {
     printf("%d", countPrimes2(2));
     return 0;
