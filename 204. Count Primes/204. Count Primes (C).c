@@ -49,6 +49,7 @@ int countPrimes2(int n)
     // in this loop, we essentially iterate through all the prime numbers (till the square root of n) and then set all multiples of that prime number to false
     // we only need to iterate till the square root of n, because by the time we reach this value, all non prime numbers in up till n would have been marked already. This is because the first "unique" non prime multiple of any prime number,x, is x * x. Any previous multiple of x would also have to be a multiple of another prime (eg x * 2 or x * 3) and as such would be marked off already. Thus, when we reach a value of a prime number, i, such that i > sqrt(n) (which is equivalent to saying i * i > n), the first unique multiple of i that has not yet been marked is i * i, which exceeds n, and is hence not useful in our solution. All previous multiple of i, eg i * 2, i * 3, have already been marked when the loop was on 2 or 3, etc respectively. Thus, by the time I reach i = sqrt(n), all relevant non- primes would be marked alr
     // the limit of i * i <= n can also be somewhat explained using the same logic as the isPrime function above, in that once i exceeds sqrt(n), we are checking the same expression, just that they are flipped 
+    // alternatively, we can explain this using the fact that if a number has no divisors less than it's square root, it's a prime. Thus, when we reach sqrt(n), we would have reached the sqrt of the biggest relevant number (n) to determine whether or not it is a prime. By this point, we would have reached the sqrt of all relevant numbers less than n, so we would already be able to determine if they were prime or not
     for(int i = 2; i * i <= n; i ++)
     {
         // this checks whether it is prime. If it is marked as true in PrimeList at the point we come across it, it means the value cannot be expressed as a multiple of any smaller numbers. Thus, it must be prime
@@ -69,6 +70,7 @@ int countPrimes2(int n)
     int count = 0;
 
     // Finally, we iterate through the entire list, and count the number of times we see a box marked as true. These boxes correspond to a prime number and hence the number of boxes that are True is equal to the number of prime numbers
+    // note theta although our algorithm above also determines whether n is prime or not, the leetcode question asks us for the count of primes STRICTLY less than n, this we ignore n.
     for (int Prime = 2; Prime < n; Prime++)
     {
         if (PrimeList[Prime])
