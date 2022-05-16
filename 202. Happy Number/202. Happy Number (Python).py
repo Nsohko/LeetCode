@@ -67,7 +67,7 @@ def isHappy2(num):
   else:
      return False
 
-
+# just a helper function to calculate the sum of the square of the digits in a number
 def squaresum(num):
   sum = 0
   while num > 0:
@@ -76,6 +76,7 @@ def squaresum(num):
     num = num // 10
   return sum
     
+# this uses Floyd's cycle detection algorithm, the same that is used in my C solution for this same problem. For the explanation, please see the C solution
 def isHappy3(num):
   slow = fast = num
   while fast != 1:
