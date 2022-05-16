@@ -35,7 +35,7 @@ int countPrimes(int n)
     return count;
 }
 
-// This is a much faster solution that works on the principle of the sieve of Eratosthenes.
+// This is a much faster solution that works on the principle of the sieve of Eratosthenes. It has a time complexity of O(nlog(log(n)), and a space complexity of of O(n)
 int countPrimes2(int n)
 {
     // I first create an array, where each index corresponds to a number, ie index x corresponds to the number x. For example index 0 corresponds to 0 and index 50 corresponds to 50. Note that we don't use 0 or 1 in this algorithm, but we still include them in the array to have easier more direct correspondence by equality between index and the number 
@@ -71,6 +71,7 @@ int countPrimes2(int n)
 
     // Finally, we iterate through the entire list, and count the number of times we see a box marked as true. These boxes correspond to a prime number and hence the number of boxes that are True is equal to the number of prime numbers
     // note that although our algorithm above also determines whether n is prime or not, the leetcode question asks us for the count of primes STRICTLY less than n, this we ignore n.
+    // Also note that since this for loop is not nested in the above algorithm, it will not affect the overall time complexity. Instead overall time complexity will just follow that of the above algorithm, which is much more dominant
     for (int Prime = 2; Prime < n; Prime++)
     {
         if (PrimeList[Prime])
