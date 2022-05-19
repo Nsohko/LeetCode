@@ -4,6 +4,7 @@
 #define TOTAL_BITS 32
 
 // a function to sun two integer x and y without the use of the + or - operator
+// This works on the assumption that the integers are stored as two's complements values. This will allow me to safely throw away any 1 that gets carried over beyond the final bit. It also lets me carry out addition and subtraction the same way, since when using twos complements to represent negative numbers, the addition of a negative number to a positive number (which is equivalent to subtraction) can be carried out as if I was just adding the two values in their binary form, which will give me the correct resultant value, also in its two's complement form. This is the default way C stores integers
 int BinarySum(int x, int y)
 {
         // This solution works by essentially doing manual long addition where it carries over the one into the next bit in the case that the current bit overflows
@@ -50,24 +51,40 @@ int BinarySum(int x, int y)
                          // Since the bit at next bit is 1 in nextbit_val, when I use the | operator on it and result, it will set the corresponding bit in result to 1, which is nextbit
                          // for the rest of the bits, since all the other bits of nextbit_val are 0, they will just follow the value of the corresponding bits in result. Ie if a bit is 1 in result, the | operator will return 1 for that corresponding bit in output. If a bit is 0 in result, the | operator will return 0 since that bit would be 0 in both result and nextbit_val
                          // this allows me to set next bit in result to 1, while leaving all other bits as is
-		 	 result = result | nextbit_val;
+		 	 // Note: there is 1 special case: in the case that we are on the last bit (curbit = 31), there will be no more bits to carry over the 1, instead we must simply throw away the carried over 1. Thus, in this case, result would simply not be modified. 
+                         //Luckily my code accounts for this. When we reach the last bit and curbit = 1, nextbit_val is set to 0, which is 0b . . . 0000, where the dots are all 0s (This is done in the code above). By doing the | operand on result and 0, it will simply return back a number exactly equal to result unmodified 
+                         result = result | nextbit_val;
 		 	}
                 // case 2: Either val1 or val2 is not 0, but not both. Thus, the value of the bit at curbit index is 1 for x and 0 for y or vice versa
 		else if (val1 != 0 || val2 != 0)
 		{
-                        // subcase 1: the value of the bit at the curbit index of result is 1. Same method as above is used to calculate the value of the bit at curbit index of result
-                        // in this case, again, there will be an overflow at the current bit of result, which means I again need to carry over a 1 to the next bit
-                        // However, in this case, since it is overflowing after combining with the digit in the curbit of result, I will need to set the value of curbit to 0, before carrying over the 1
-			if ((result & curbit_val) != 0)
+                   // subcase 1: the value of the bit at the curbit index of result is 1. Same method as above is used to calculate the value of the bit at curbit index of result
+                   // in this case, again, there will be an overflow at the current bit of result, which means I again need to carry over a 1 to the next bit
+                   // However, in this case, since it is overflowing after combining with the digit in the curbit of result, I will need to set the value of curbit to 0, before carrying over the 1
+		   if ((result & curbit_val) != 0)
 		   {
+                           // to set the value of the bit at cue it index from 1 to 0, I can use the ^ operator. This works by setting a resultant bit to 1 in the case that the two corresponding bits in the operant are different. Ie 0101 ^ 0011 = 0110
+                           // recall that cut is such that all it's bits are 0 except for the bit at curbit index which is 1
+                           // Thus, since the bit at curbit index of both result and curbit_val is 1, the ^ operator will set the corresponding bit in the output to 0
+                           // for the rest of the bit, curbit_val has all bits set to 0, while result has a unique set of bits
+                           // in the case that a bit at a particular index of result is 0, and given that the corresponding bit of curbit_val is also 0, the ^ value would return a 0 for the correposning bit in its output, since the two bits are the same in its input. Thus, wherever result has a 0 bit, the output will also have a 0 bit
+                           // on the other hand, if a bit a particular index of result is 1, and given that the corresponding bit of curbit_val is 0, the ^ operator would return a 1 for the corresponding bit in its output, since the two input bits are different, Thus, wherever result has a 1 bit, the output will also have a 1 bit, except for the bit at the curbit index as explained above
+                           // this way I can set the bit at curbit index of result from 1 to 0, while leaving the rest of result unmodified  
 			   result = result ^ curbit_val;
+        
+                           // After that I will need to carry over the 1 to next bit. This is done the same way as above, using the | operator
+                           // Similarly to above, when we reach the last bit (ie curbit = 31), I need to throw away the carried over 1. Same as above, my code handles this by setting nextbit_val to 0, which would return me back result when I do result | nextbit_val effectively throwing away the carried over 1. Note that in this case, I still need to set the value of curbit in result from 1 to 0, since it is still combining with the current bit of result, so the previous line of code still needs to execute
 		   	   result = result | nextbit_val;
 		   }
+                   // subacase 2: value of the bit at curbit index of result is 0
+                   // this is very simple, I just have to set the value of the curbit in result to 1
 		   else
 		   {
+                           // to set a particular bit to 1, I can use the | operator as explained above, in this case, since I'm setting curbit to 1, my second operand for the | operator is curbit_val, instead of nextbit_val
 			   result = result | curbit_val;
 		   }
 		}
+                // Technically there is a case 3, where the val1 and val2 are both 0. Thus curbit of both x and y are both 0. Since 0 + 0 = 0, in this case I do not need to do anything, and instead just leave result as is
 		
 	}
 	
