@@ -5,6 +5,8 @@
 
 // a function to sun two integer x and y without the use of the + or - operator
 // This works on the assumption that the integers are stored as two's complements values. This will allow me to safely throw away any 1 that gets carried over beyond the final bit. It also lets me carry out addition and subtraction the same way, since when using twos complements to represent negative numbers, the addition of a negative number to a positive number (which is equivalent to subtraction) can be carried out as if I was just adding the two values in their binary form, which will give me the correct resultant value, also in its two's complement form. This is the default way C stores integers
+// in the two's compelemnt method of storing integers, 2 - 3 = 2 + (-3) = 2 + two's complement representation of -3.
+// the two's complement representation of the negative number -x can be found by inverting all the bits of x and then adding 1
 int BinarySum(int x, int y)
 {
         // This solution works by essentially doing manual long addition where it carries over the one into the next bit in the case that the current bit overflows
@@ -90,6 +92,34 @@ int BinarySum(int x, int y)
 	
 	return result;
 	
+}
+
+// Another possible solution. This works on the same principle of manual addition through carrying
+// this solution first does addition of the two numbers without carry to get one value. It then gets another value which equal to the carried over bits, after that the algorithm sums this two values recursively using the same process. This is done until the carry equals 0
+int getSum(int a, int b){
+	
+        // for the purposes of this solution, I'll use a to store the value of the sum (ignoring the carry) and b to store the value of the carry after every cycle
+        // thus the end condition for the cycle is when b == 0, which means the carry is 0. Thus, the sun excluding carry will equal the actual sun. Since I stored the sun in a, I just have to return a after that
+	while (b != 0)
+	{
+                // sun is a temporary value to hold the value of the sum of a and b excluding carry
+                // the ^ operator will give me this value as it will give me a 1 where 1 bit is 1 in a and 1 bit is 0 in b. 
+                // when both bits are 0 in a and b the ^ operator gives 0
+                // finally when both bits are 1 in a and b, the ^ operator gives 0, which is correct since if both bits are 1 in a and b it means that that but must be carried over to the next bit and current bit must be set to 0
+		int sum = a ^ b;
+		
+                // this is some very scuffed casting that I don't like, but there are not many alternatives. In C standard, support for the left shift of negative numbers eg -1<<5 is not supported for some reason. Thus, I first need to cast a&b to an unsigned int before shifting
+                // the resultant value then must get auto cast back into an int since b is an int. Usually C does this by just taking the bits of the unsigned int and reading it using the two's complement method to get back a valid int, however, this is also risk
+                // luckily some compilers have been optimised to allow the left shift of negative numbers, so in those cases such risky casting will not be needed
+                // now to explain what I'm doing. b stores the value of the carried over bits. A bit will have to be carried over if both bits in a and b are 1. This can be found using & operator which will return 1 every time both bits are 1
+                // also since once a bit is carried, it will be carried onto the next position, we must shift the carried bit to the left by 1 place, which is done by the << operator
+		b = (unsigned int) (a & b) << 1;
+		
+                // finally set a to sum and continue with the loop till the carry value (b)= 0 
+		a = sum;
+	}
+	
+	return a;
 }
 
 int main() {
