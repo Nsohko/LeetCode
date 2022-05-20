@@ -111,6 +111,7 @@ int getSum(int a, int b){
                 // this is some very scuffed casting that I don't like, but there are not many alternatives. In C standard, support for the left shift of negative numbers eg -1<<5 is not supported for some reason. Thus, I first need to cast a&b to an unsigned int before shifting
                 // the resultant value then must get auto cast back into an int since b is an int. Usually C does this by just taking the bits of the unsigned int and reading it using the two's complement method to get back a valid int, however, this is also risk
                 // luckily some compilers have been optimised to allow the left shift of negative numbers, so in those cases such risky casting will not be needed
+                // note most modern compilers support shifting of negative numbers, so if you ever need to implement try without casting first
                 // now to explain what I'm doing. b stores the value of the carried over bits. A bit will have to be carried over if both bits in a and b are 1. This can be found using & operator which will return 1 every time both bits are 1
                 // also since once a bit is carried, it will be carried onto the next position, we must shift the carried bit to the left by 1 place, which is done by the << operator
 		b = (unsigned int) (a & b) << 1;
