@@ -23,8 +23,17 @@ def BinarySum(a, b):
       # to get over the problem that a and b could be of different sizes, Python will essentially pad the shorter numbers (in binary) out till they are of the same length. If the shorter number is positive, Python will pad out with leading 0s. 
       # due to the issue 
       sum = (a ^ b) & mask
+
+      # the use of the first & and << operant here is the same as in C, however, you will also notice the & mask at the end of this line
+      # since python can effectively store infinite integers, as it is mathematically assigns infinite bits to an integer, every time the << is carried out, the 1s in b will shift to the left by one spot. However, the thing is, any 1s that exceed the 32 bit from the right won't be thrown away like in C, instead, they will just move onto the 33 bit from the right
+      # this is incorrect as this method requires the "excess" bits to be thrown away
+      # in certain cases (eg if a < 0 and b > 0), bits will just keep getting pushed to the left without ever getting thrown away. This will result in an infinite loop as the carry value and b will never reach 0
+      # thus I must do the & operant with mask. Mad is value where the first 32 bits from the right are 1, while anything beyond that is 0. Doing & mask will this set all bits beyond the first 32 in (a & b) << 1 to 0, ensuring the algorithm works and excess bits are thrown away
       b = ((a & b) << 1) & mask
+
       a = sum
+
+   
     if a > MAX_INT:
       return ~(a ^ mask)
     else:
