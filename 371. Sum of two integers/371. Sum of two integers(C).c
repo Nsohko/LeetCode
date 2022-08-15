@@ -17,7 +17,8 @@ int BinarySum(int x, int y)
         // I am iterating through each bit in the integer, where curbit is the "index" of the bit and curbit_val is the value held in that bit
         // for example, curbit = 0 corresponds to 1st bit which stores the value of 2^0 = 1 in curbit_val. curbit = 3 is the 4th bit which corresponds to a curbit_val of 2^3 = 8. It is noted that curbit_val increases by a factor of 2 for every bit
         // Also note that these are unsigned integers as they are always above 0. The final bit of these unsigned integers is a curbit_val of 2^31, which occurs when curbit = 32. Thus, using unsigned int lets me hold the max value of curbit_val. An unsigned int works linearly in that the value of each bit is 2 * the value of the previous bit, letting this solution work. If I used a normal integer, that last bit is the sign bit and does not actually correspond to a magnitude. Thus, the max curbit_val of a normal int is 2^30 only, which corresponds only to 31 bits, so my curbit_val would overflow on the final iteration
-               
+        for (unsigned int curbit = 0, curbit_val = 1; curbit < TOTAL_BITS; curbit++, curbit_val *= 2)
+        {
                 // I just intiliase an unsigned int to 0. Note that this is also a unsigned int, since at some point I need it's value to equal 2^31 when the last bit is on, which would overflow a regular integer (since the last bit is used for signing on normal signed int)
 		unsigned int nextbit_val = 0;
 		
