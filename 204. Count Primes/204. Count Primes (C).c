@@ -24,7 +24,7 @@ bool isPrime(int num)
 int countPrimes(int n)
 {
     int count = 0;
-    for (int i = 2; i < n; i++)
+    for (int i = 2; i <= n; i++)
     {
         if (isPrime(i))
         {
@@ -59,7 +59,7 @@ int countPrimes2(int n)
             // As written above, the first new "unique" multiple of a prime number, that has not already been marked, is i * i, where i is a prime number. All previous multiples of i  can be expressed as i * c, where c is a combination of previous prime numbers. Thus, when the loop was on those previous prime numbers, this multiple would be marked as false already. For example, consider the multiple i * 2. This multiple would have already been marked as false when the loop was on 2. Thus, we do not need to check it again, and can instead start at i * i, which is the first new unmarked multiple
             // we keep iterating till we reach the last number,n
             // after every cycle, we increment multiple by i, ie we sat multiple = multiple + i. This is because this will directly give us the value of the next multiple of i
-            for (int multiple = i * i; multiple < n; multiple = multiple + i)
+            for (int multiple = i * i; multiple <= n; multiple = multiple + i)
             {
                 // since multiple is a multiple of a prime number, it is not a prime number itself. Thus, we set it to False
                 PrimeList[multiple] = false;
