@@ -32,6 +32,6 @@ def isIsomorphic(s, t):
          else:
            # if only one of char from s or t is in their repsective dictionary but not both, it is guranteed to be a mismatch. thus, false is returned
                     return False
-            else:
-              # return true after hcekcing all xhar
-                return True
+      else:
+         # return true after hcekcing all xhar
+         return True
